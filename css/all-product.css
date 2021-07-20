@@ -1,0 +1,40 @@
+@import url(style.css);
+
+section{
+    width: 100%;
+    height: max-content;
+    max-height: max-content;
+    padding: 3% 10%;
+}
+section h2{
+    color: var(--primaryColor);
+    font-weight: normal;
+}
+
+section select{
+    color: var(--titleText);
+    padding: 5px 10px;
+    font-size: 16px;
+    margin: 10px 0;
+
+    outline: none;
+    border: 1px solid gray;
+}
+
+section .product-container{
+    width: 100%;
+    height: max-content;
+    padding: 10px 0;
+    background: none;
+}
+section .product-container ul{
+    background: none;
+    padding: 0;
+}
+section .product-container ul li{
+    margin: 10px 0;
+}
+
+section .product-container ul li .product-box .container{
+    background: whitesmoke;
+}

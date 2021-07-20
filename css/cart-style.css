@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url(style.css);
+
+*{
+    margin: 0; 
+    padding: 0;
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+body{
+    padding-top: 10vh;
+    background: white;
+}
+
+
+header{
+    position: fixed;
+    height: 10vh;
+    width: 100vw;
+    top: 0%;
+    z-index: 999;
+    background: white;
+}
+
+
+header .primary-header{
+    height: 10vh;
+    background: white;
+    padding: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+
+
+header .primary-header .secondary-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: max-content;
+}
+
+header .primary-header .secondary-nav a{
+    text-decoration: none;
+    margin: 0 7px;
+    color:var(--titleText);
+}
+
+header .primary-header .secondary-nav a.login-link{
+    color: var(--primaryColor);
+    padding: 5px 20px;
+    border-radius: 5em;
+    border: 2px solid var(--primaryColor);
+}
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container{
+    width: 100%;
+    height: max-content;
+    padding: 2.5% 10%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+
+}
+.container section{
+    width: 100%;
+    margin: 10px 0;
+}
+
+
+.container .my-cart-container{
+    padding: 2% 0;
+    height: max-content;
+    position: relative;
+}
+
+.container .my-cart-container .error-Handling{
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgb(218, 75, 75);
+    color: rgba(255, 255, 255, 0.644);
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 5px
+}
+
+.container .my-cart-container h1{
+    font-size: 32px;
+    padding: 0 20px;
+}
+.container .my-cart-container table {
+    width: 100%;
+    background: whitesmoke;
+   
+}
+.container .my-cart-container table tr{
+   
+    width: 100%;
+}
+.container .my-cart-container table tr td{
+    text-align: center;
+    padding: 5px 10px;
+    width: max-content;   
+}
+    
+.container .my-cart-container table tr td .del-btn{
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+.container .my-cart-container table tr td .del-btn:hover{
+    text-decoration: underline;
+}
+.container .my-cart-container table .header td{
+    background: var(--primaryColor);
+    color: rgba(255, 255, 255, 0.568);
+
+}
+.container .my-cart-container table tr td img{
+    width: 110px;
+    height: 100px;
+}
+
+.container .my-cart-container .check-btn{
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    background: rgb(60, 60, 255);
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

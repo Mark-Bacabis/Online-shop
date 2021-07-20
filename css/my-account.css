@@ -1,0 +1,97 @@
+.my-account-container{
+    height: 85vh;
+    padding: 3% 10%;
+    background: white;
+}
+
+.my-account-container .change-container{
+    height: 100%;
+    width: 100%;
+    background: #F29B45;
+    display: flex;
+    padding: 2%;
+}
+
+.my-account-container .change-container > div{
+    background: lemonchiffon;
+    height: 100%;
+    width: 30%;
+    margin: 0 10px;
+    border-radius: 8px;
+}
+
+.my-account-container .change-container div.profile-container{
+    height: max-content;
+    padding: 3% 0;
+}
+.my-account-container .change-container div.profile-container .button-change-profile{
+    height: max-content;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+    padding: 0 20px;
+}
+
+.my-account-container .change-container div.profile-container .button-change-profile input{
+    padding: 4px 10px;
+    font-size: 16px;
+}
+
+.my-account-container .change-container div.profile-container .order-history-container{
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.my-account-container .change-container div.profile-container .order-history-container a{
+    background:rgb(122, 179, 173);
+    padding: 5px 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.my-account-container .change-container div .profile-pic{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: lightcoral;
+    margin: 0 auto;
+}
+.my-account-container .change-container div .profile-pic img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.my-account-container .change-container div.user-details{
+    width: 100%;
+    background: rgb(208, 208, 219);
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-account-container .change-container div.user-details table{
+    width: 80%;
+    margin: 10px auto;
+    background: rosybrown;
+    padding: 10px 20px;
+    
+}
+
+.my-account-container .change-container div.user-details table input{
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 10px;
+    margin: 6px;
+    outline: none;
+}
+.my-account-container .change-container div.user-details table tr td:first-child{
+    text-align: right;
+    padding: 0 5px;
+} 

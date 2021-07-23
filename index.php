@@ -108,6 +108,7 @@
     <div class="dropdown-nav" id="dropdown-nav" style="display: none">
       <!--<a href="#">My Account</a>
       <a href="#">Order History</a>-->
+      <a href="./php/my-purchase.php">My Purchase</a>
       <a href="./processes/logout.php">Logout</a>
     </div>
 </header>

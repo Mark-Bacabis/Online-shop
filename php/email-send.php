@@ -32,6 +32,6 @@
 
 
    if(mail($email_to, $subject, $message, $header)){
-        header("location:/ONLINE-SHOP-MAIN/E-Commerce/thankyou.php");
+        header("location:../E-commerce/thankyou.php");
     }
 ?>

@@ -320,7 +320,7 @@ error_reporting(0);
 
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            window.location = 'http://localhost/online-shop-main/processes/process-transaction.php';
+            window.location = 'http://localhost/ONLINE-SHOP/processes/process-transaction.php';
           });
         },
 

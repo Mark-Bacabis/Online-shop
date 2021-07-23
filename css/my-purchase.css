@@ -1,0 +1,49 @@
+@import url(./style.css);
+
+main{
+    padding: 2% 10%;
+    padding-bottom: 5%;
+    height: max-content;
+    max-height: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+main .purch-title{
+    display: block;
+    padding: 5px 2%;
+    background: var(--primaryColor);
+    margin-bottom: 5px;
+}
+
+main .purch-title h1{
+    color: white;
+}
+main .my-history{
+    width: 100%;
+    height: max-content;
+}
+main .my-history .history-box{
+    display: flex;
+    align-items: center;
+
+}
+main .my-history .history-box{
+    padding: 10px 20px;
+    background: white;
+    margin: 10px 0;
+}
+main .my-history .history-box > div{
+    margin: 0 20px;
+}
+
+main .my-history .history-box .prod-pic img{
+    width: 200px;
+}
+
+main .my-history .history-box .prod-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

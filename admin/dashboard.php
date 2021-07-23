@@ -3,6 +3,8 @@
     error_reporting(0);
     include "../connection.php";
 
+    
+
     // CUSTOMER
     $sel = oci_parse($connection, "SELECT * FROM CUSTOMERACC");
     oci_execute($sel);
@@ -20,17 +22,68 @@
     $selP = oci_parse($connection, "SELECT * FROM PRODUCTS ORDER BY PRODUCTID");
     oci_execute($selP);
 
+    $did = $_GET['did'];
     $pid = $_GET['pid'];
-               
+    $query = $_GET['query'];
+
     if(!empty($pid)){
         echo "<style> .admin-content { display: none } 
-                        .product-container { display: block } 
+                        .product-container { display: block }
+                        .product-modal{ display: flex} 
+                    
         </style>";
-    }else{
+
+        //SELECT
+
+        $selProduct = oci_parse($connection, "SELECT * FROM PRODUCTS WHERE PRODUCTID = $pid");
+        oci_execute($selProduct);
+
+        $product = oci_fetch_assoc($selProduct);
+
+
+        $id = $product['PRODUCTID'];
+        $name = $product['PRODUCTNAME'];
+        $price = $product['PRODUCTPRICE'];
+        $stocks = $product['STOCKS'];
+
+    }
+    else{
         echo "<style> .admin-content { display: block } 
-        .product-container { display: none } sssss
+        .product-container { display: none }
+        .product-modal{ display: none} 
         </style>";
     }
+
+
+    if(!empty($did)){
+        echo "
+        <style> 
+           .admin-content { display: none } 
+           .product-container { display: block }          
+       </style>";
+
+        //DELETE 
+        $del = oci_parse($connection, "DELETE FROM PRODUCTS WHERE PRODUCTID = $did");
+        oci_execute($del);
+        header("location:dashboard.php?query=deleted");
+   }
+   else{
+       echo "
+       <style> 
+           .admin-content { display: block } 
+           .product-container { display: none }
+       </style>";
+   }
+
+
+
+   if($query == "deleted"){
+        echo "
+        <style> 
+        .admin-content { display: none } 
+        .product-container { display: block }          
+    </style>";
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,10 +161,7 @@
                         <img src="../admin/icons/customers.png" alt="">
                         <a> Customers </a>
                     </li>
-                    <li class="category">
-                        <img src="../admin/icons/category.png" alt="">
-                        <a> Category </a>
-                    </li>
+                    
                     <li class="products">
                         <img src="../admin/icons/products.png" alt="">
                         <a> Products </a>
@@ -263,27 +313,62 @@
                 </table>
             </div>
 
+            <!-- MODAL FOR ADDING PRODUCTS -->
+            <div class="add-product-modal">
+                <form action="./dashboard-process.php" method="POST" enctype="multipart/form-data">
+                    <label for="pname"> Product name </label>
+                    <input type="text" name="pname" id="pname" required>
 
-            <!-- CATEGORY -->
-            <div class="category-container">
-                 <h1 class="title"> Category </h1>
-                <table border="0">
-                    <tr>
-                        <th> Clothes </th>
-                        <th> Cosmetics </th>
-                        <th> Caps </th>
-                        <th> Bag </th>
-                        <th> Purse </th>
-                        <th> Sauce </th>
-                    </tr>
-                   
-                </table>
+                    <label for="price"> Price </label>
+                    <input type="text" name="price" id="price" required>
+
+                    <label for="stocks"> Stocks </label>
+                    <input type="text" name="stocks" id="stocks" required>
+
+                    <label for="type"> Type </label>
+                    <input type="text" name="type" id="type" required>
+
+                    <label for="pic"> Picture </label>
+                    <input type="file" name="picture" id="pic" required>
+
+                    <label for="brand"> Brand </label>
+                    <input type="text" name="brand" id="brand" required>
+
+                    <input type="submit" name="add-btn" value="Add product">
+                    <button type="button" id="close"> Close </button>
+                </form>
             </div>
 
 
+            <!-- EDIT MODAL -->
+            <div class="product-modal">
+                <form action="./dashboard-process.php" method="POST">
+                
+               
+                    <input style="display:none;" type="text" name="id" id="type" value="<?=$id?>" required>
+
+                    <label for="pname"> Product name </label>
+                    <input type="text" name="pname" id="pname" value="<?=$name?>" required disabled>
+
+                    <label for="price"> Price </label>
+                    <input type="text" name="price" id="price" value="<?=$price?>" required>
+
+                    <label for="stocks"> Stocks </label>
+                    <input type="text" name="stocks" id="stocks" value="<?=$stocks?>" required>
+
+
+                    <input type="submit" name="edit-btn" value="Update Product">
+                    <a href="dashboard.php" class="close"> Close </a>
+                </form>
+            </div>
+
             <!-- PRODUCTS -->
             <div class="product-container">
+                <div class="button-add">
+                     <button id="add-btn"> Add product </button>
+                 </div>
                  <h1 class="title"> Products </h1>
+                
                 <table border="0">
                     <tr>
                         <th> Product ID </th>
@@ -302,8 +387,8 @@
                         <td> <?=$prodRow['STOCKS']?> </td>
                         <td> <?=$prodRow['TYPE']?></td>
                         <td><?=$prodRow['BRAND']?> </td>
-                        <td> <a href="?pid=<?=$prodRow['PRODUCTID']?>">Edit</a> </td>
-                        <td> <a href="?pid=<?=$prodRow['PRODUCTID']?>">Delete</a> </td>
+                        <td> <a href="?pid=<?=$prodRow['PRODUCTID']?>" class="edit-link">Edit</a> </td>
+                        <td> <a href="?did=<?=$prodRow['PRODUCTID']?>" class="del-link">Delete</a> </td>
                     </tr>
                     <?php } ?>
                    
@@ -370,5 +455,21 @@
             
 
 <script src="../js/dashboard.js"></script>
+
+<script>
+    const modalAdd = document.querySelector('.add-product-modal');
+
+    const close = document.getElementById('close');
+    const btnAdd = document.getElementById('add-btn');
+
+    close.addEventListener('click', () =>{
+        modalAdd.style.display = 'none';
+    });
+
+    btnAdd.addEventListener('click', () =>{
+        modalAdd.style.display = 'flex';
+    });
+
+</script>
 </body>
 </html>
